@@ -98,12 +98,15 @@ public class BigDataClient {
             String localStr=in.readLine();
             if(localStr.equals("100")){
                 String msj="Se recibio el numero 100\n";
+                contadorNumPrimos(100);
                 messageArea.append(msj);
             } else if(localStr.equals("200")){
                 String msj="Se recibio el numero 200\n";
+                contadorNumPrimos(200);
                 messageArea.append(msj);
             }else if(localStr.equals("300")){
                 String msj="Se recibio el numero 300\n";
+                contadorNumPrimos(300);
                 messageArea.append(msj);
             }else{
                 messageArea.append(localStr + "\n");
@@ -112,10 +115,30 @@ public class BigDataClient {
         
     }
     
-    public int[] numerosPrimos(String num){
-        int[] arreglo = {1,2,3,4,5};
-        return arreglo;
+      public static boolean isPrime(int n) {
+    //Se prueba si es multiplo de 2
+    if (n%2==0) return false;
+    //Si no checkear impares
+    for(int i=3;i*i<=n;i+=2) {
+        if(n%i==0)
+            return false;
     }
+    return true;
+}
+      
+      public static void contadorNumPrimos(int i){
+     
+        int contador=0;
+        int cantNumPrimos=0;
+        while(contador<i){
+            if(isPrime(contador)==true){
+                cantNumPrimos++;
+            }
+            contador++;
+        }
+        System.out.println("Cantidad de numeros primos desde 0 hasta "+i+" es:"+" "+cantNumPrimos);
+  }
+    
 
     /**
      * SE CORRE LA APLICACION DE CLIENTE
