@@ -92,29 +92,21 @@ public class BigDataClient {
         in = new BufferedReader(new InputStreamReader( socket.getInputStream() ) );
         out = new PrintWriter(socket.getOutputStream() , true);
 
+
         // MENSAJE DE BIENVENIDA DEL SERVIDOR AL CLIENTE
-        String num1="100";
-        String num2="200";
-        String num3="300";
-        
+ 
         
         for (int i = 0; i < 4; i++) {
-            
-            
             String localStr=in.readLine();
-            if(localStr.equals(num1)){
-                int numPrimos=contadorNumPrimos(0,100);
-                String msj="Se recibio el numero 100 y la cantidad de numeros Primos es de "+numPrimos+"\n";
-                messageArea.append(msj);
-            } else if(localStr.equals(num2)){
-                int numPrimos=contadorNumPrimos(Integer.parseInt(num2),0);
-                String msj="Se recibio el numero 200 y la cantidad de numeros Primos es de "+numPrimos+"\n";
-                messageArea.append(msj);
-            }else if(localStr.equals(num3)){
-                int numPrimos=contadorNumPrimos(Integer.parseInt(num3),0);
-                   String msj="Se recibio el numero 300 y la cantidad de numeros Primos es de"+numPrimos+"\n";
-                messageArea.append(msj);
+            String[] splitStr = localStr.trim().split("\\s+");
+            
+            if(splitStr.length==2){
+                 int numPrimos=contadorNumPrimos(Integer.parseInt(splitStr[0]),Integer.parseInt(splitStr[1]));
+                 String msj="Limite Inferior: "+splitStr[0]+"  Limite Superior: "+splitStr[1]+"  Cantidad Numeros Primos: "+numPrimos+"\n";
+                 out.println(String.valueOf(numPrimos));
+                 messageArea.append(msj);
             }else{
+                //Se pone el mensaje si no da el trigger de evento en el message area
                 messageArea.append(localStr + "\n");
             }
         }
