@@ -93,20 +93,26 @@ public class BigDataClient {
         out = new PrintWriter(socket.getOutputStream() , true);
 
         // MENSAJE DE BIENVENIDA DEL SERVIDOR AL CLIENTE
+        String num1="100";
+        String num2="200";
+        String num3="300";
+        
+        
         for (int i = 0; i < 4; i++) {
-           
+            
+            
             String localStr=in.readLine();
-            if(localStr.equals("100")){
-                String msj="Se recibio el numero 100\n";
-                contadorNumPrimos(100);
+            if(localStr.equals(num1)){
+                int numPrimos=contadorNumPrimos(0,100);
+                String msj="Se recibio el numero 100 y la cantidad de numeros Primos es de "+numPrimos+"\n";
                 messageArea.append(msj);
-            } else if(localStr.equals("200")){
-                String msj="Se recibio el numero 200\n";
-                contadorNumPrimos(200);
+            } else if(localStr.equals(num2)){
+                int numPrimos=contadorNumPrimos(Integer.parseInt(num2),0);
+                String msj="Se recibio el numero 200 y la cantidad de numeros Primos es de "+numPrimos+"\n";
                 messageArea.append(msj);
-            }else if(localStr.equals("300")){
-                String msj="Se recibio el numero 300\n";
-                contadorNumPrimos(300);
+            }else if(localStr.equals(num3)){
+                int numPrimos=contadorNumPrimos(Integer.parseInt(num3),0);
+                   String msj="Se recibio el numero 300 y la cantidad de numeros Primos es de"+numPrimos+"\n";
                 messageArea.append(msj);
             }else{
                 messageArea.append(localStr + "\n");
@@ -126,17 +132,18 @@ public class BigDataClient {
     return true;
 }
       
-      public static void contadorNumPrimos(int i){
+      public static int contadorNumPrimos(int limiteInferior, int limiteSuperior){
      
-        int contador=0;
+        int contador=limiteInferior;
         int cantNumPrimos=0;
-        while(contador<i){
+        while(contador<limiteSuperior){
             if(isPrime(contador)==true){
                 cantNumPrimos++;
             }
             contador++;
         }
-        System.out.println("Cantidad de numeros primos desde 0 hasta "+i+" es:"+" "+cantNumPrimos);
+        System.out.println("Cantidad de numeros primos desde "+limiteInferior+" hasta "+limiteSuperior+" es:"+" "+cantNumPrimos);
+        return cantNumPrimos;
   }
     
 
